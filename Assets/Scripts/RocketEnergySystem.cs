@@ -2,8 +2,8 @@
 
 public class RocketEnergySystem : MonoBehaviour
 {
-
-    private float fuel = 100f;    
+    private float fuel;
+    private float maxFuel;
 
     private readonly float SPEED = 5f;
     private readonly float FUELPERSHOOT = 10f;
@@ -18,7 +18,8 @@ public class RocketEnergySystem : MonoBehaviour
             fuel -= FUELPERSHOOT;
         }
     }
-    public void FuelCharging(float maxFuel)
+
+    public void FuelCharging()
     {
         if (maxFuel > fuel)
         {
@@ -33,5 +34,11 @@ public class RocketEnergySystem : MonoBehaviour
     public float GetFuel()
     {
         return fuel;
+    }
+
+    public void SetMaxFuel(float MaxFuel)
+    {
+        maxFuel = MaxFuel;
+        fuel = maxFuel;
     }
 }

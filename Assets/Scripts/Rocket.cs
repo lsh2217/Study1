@@ -18,16 +18,12 @@ public class Rocket : MonoBehaviour
         _rb2d = GetComponent<Rigidbody2D>();
         rocketDashboard = GetComponent<RocketDashboard>();
         rocketEnergySystem = GetComponent<RocketEnergySystem>();
+        rocketEnergySystem.SetMaxFuel(maxFuel);
     }
     private void Update()
     {
-        rocketDashboard.Fuel(0, 100, rocketEnergySystem.GetFuel());
-        rocketDashboard.HightScore();
-        rocketEnergySystem.FuelCharging(maxFuel);
-    }
-
-    public void ReStartGame()
-    {
-        SceneManager.LoadScene("RocketLauncher");
+        rocketEnergySystem.FuelCharging();
+        rocketDashboard.Fuel(maxFuel, rocketEnergySystem.GetFuel());
+        rocketDashboard.RocketUI();
     }
 }

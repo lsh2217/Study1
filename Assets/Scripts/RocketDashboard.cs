@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RocketDashboard : MonoBehaviour
 {
-
     [SerializeField] private TextMeshProUGUI currentScoreTxt;
     [SerializeField] private TextMeshProUGUI highScoreTxt;
     [SerializeField] private Image FuelImg;
 
     int currentScore;
     int hightScore;
+
+    float max;
+    public float fuel;
+
+    public void RocketUI()
+    {
+        HightScore();
+        FuelUI();
+    }
 
     public void HightScore()
     {
@@ -22,8 +31,20 @@ public class RocketDashboard : MonoBehaviour
         currentScoreTxt.text = $"{currentScore} M";
         highScoreTxt.text = $"HIGH : {hightScore} M";
     }
-    public void Fuel(float Min, float Max, float Fuel)
+
+    public void Fuel(float Max, float Fuel)
     {
-        FuelImg.fillAmount = (Fuel - Min) / (Max - Min);
+        max = Max;
+        fuel = Fuel;
+    }
+
+    public void FuelUI()
+    {
+        FuelImg.fillAmount = fuel / max;
+    }
+
+    public void ReStartGame()
+    {
+        SceneManager.LoadScene("RocketLauncher");
     }
 }
